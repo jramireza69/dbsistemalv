@@ -60,14 +60,20 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     <img src="img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com">
-                    <span class="d-md-down-none">admin </span>
+                    <span class="d-md-down-none">
+                        {{ Auth::user()->usuario }} </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
                     <div class="dropdown-header text-center">
                         <strong>Cuenta</strong>
                     </div>
-                    <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
-                    <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Cerrar sesión</a>
+                <a class="dropdown-item" href="{{route('logout')}}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="fa fa-lock"></i> Cerrar sesión</a>
+
+                <form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;">
+                {{ csrf_field() }}
+                </form>
                 </div>
             </li>
         </ul>
@@ -75,7 +81,20 @@
 
     <div class="app-body">
 
-       @include('plantilla.sidebar')
+        @if (Auth::check())
+           @if (Auth::user()->idrol == 1)
+                @include('plantilla.sidebaradministrador')
+            @elseif (Auth::user()->idrol == 2)
+                @include('plantilla.sidebarvendedor')
+            @elseif (Auth::user()->idrol == 3)
+                @include('plantilla.sidebaralmacenero')
+           @else
+            
+              @endif
+            
+        @endif
+
+     
 
         <!-- Contenido Principal -->
         @yield('contenido')
@@ -91,17 +110,18 @@
         <span class="ml-auto">Desarrollado por <a href="http://www.incanatoit.com/">IncanatoIT</a></span>
     </footer>
 
-
+    {{-- <script src="js/bootstrap.min.js"></script> --}}
     <script src="js/app.js"></script>
     <!-- Bootstrap and necessary plugins -->
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    
     <script src="js/pace.min.js"></script>
     <!-- Plugins and scripts required by all views -->
     <script src="js/Chart.min.js"></script>
     <!-- GenesisUI main scripts -->
     <script src="js/template.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
    
 </body>
 
