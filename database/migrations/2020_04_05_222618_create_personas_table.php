@@ -23,6 +23,8 @@ class CreatePersonasTable extends Migration
             $table->string('email', 200)->nullable();
             $table->timestamps();
         });
+        DB::table('personas')->insert(array('nombre'=>'jaime','tipo_documento'=>'CC', 
+        'num_documento'=>'71770935', 'telefono' => '3174279811'));
     }
 
     /**

@@ -12,6 +12,9 @@
                         <button type="button" @click="abrirModal('articulo','registrar')" class="btn btn-secondary">
                             <i class="icon-plus"></i>&nbsp;Nuevo
                         </button>
+                        <button type="button" @click="cargarPdf()" class="btn btn-info">
+                            <i class="icon-doc"></i>&nbsp;Reporte
+                        </button>
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
@@ -263,6 +266,9 @@ import VueBarcode from 'vue-barcode';
                     console.log(error);
                 });
             },
+            cargarPdf(){
+                window.open('http://dbtareaslv.test/articulo/listarPdf', '_blank');
+            },
             cambiarPagina(page,buscar,criterio){
                 let me = this;
                 //Actualiza la página actual
@@ -462,6 +468,21 @@ import VueBarcode from 'vue-barcode';
                                 break;
                             }
                             case 'duplicar':
+                            {
+                                //console.log(data);
+                                this.modal=1;
+                                this.tituloModal='Duplicar Artículo';
+                                this.tipoAccion=3;
+                                this.articulo_id=data['id'];
+                                this.idcategoria=data['idcategoria'];
+                                this.codigo = data['codigo'];
+                                this.nombre = data['nombre'];
+                                this.stock = data['stock'];
+                                this.precio_venta = data['precio_venta'];
+                                this.descripcion= data['descripcion'];
+                                break;
+                            }
+                            case 'eliminar':
                             {
                                 //console.log(data);
                                 this.modal=1;

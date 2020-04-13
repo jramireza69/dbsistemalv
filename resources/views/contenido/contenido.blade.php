@@ -4,7 +4,7 @@
 @if(Auth::check())
         @if (Auth::user()->idrol == 1)
         <template v-if="menu==0">
-            <h1>Escritorio</h1>
+           <dashboard></dashboard>
         </template>
 
         <template v-if="menu==1">
@@ -16,7 +16,7 @@
         </template>
 
         <template v-if="menu==3">
-            <h1>Ingresos</h1>
+            <ingreso></ingreso>
         </template>
 
         <template v-if="menu==4">
@@ -24,7 +24,7 @@
         </template>
 
         <template v-if="menu==5">
-            <h1>Ventas</h1>
+            <venta></venta>
         </template>
 
         <template v-if="menu==6">
@@ -40,7 +40,7 @@
         </template>
 
         <template v-if="menu==9">
-            <h1>Reporte ingresos</h1>
+           <consultaingreso></consultaingreso>
         </template>
 
         <template v-if="menu==10">
@@ -55,6 +55,9 @@
             <h1>Acerca de</h1>
         </template>
         @elseif (Auth::user()->idrol == 2)
+        <template v-if="menu==0">
+            <dashboard></dashboard>
+         </template>
         <template v-if="menu==5">
             <h1>Ventas</h1>
         </template>
@@ -74,6 +77,9 @@
             <h1>Acerca de</h1>
         </template>
         @elseif (Auth::user()->idrol == 3)
+        <template v-if="menu==0">
+            <dashboard></dashboard>
+         </template>
         <template v-if="menu==1">
             <categoria></categoria>
         </template>
@@ -83,14 +89,14 @@
         </template>
 
         <template v-if="menu==3">
-            <h1>Ingresos</h1>
+            <ingreso></ingreso>
         </template>
 
         <template v-if="menu==4">
             <proveedor></proveedor>
         </template>
         <template v-if="menu==9">
-            <h1>Reporte ingresos</h1>
+            <consultaingreso></consultaingreso>
         </template>
         <template v-if="menu==11">
             <h1>Ayuda</h1>

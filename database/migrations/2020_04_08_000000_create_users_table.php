@@ -28,6 +28,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
            // $table->timestamps();
         });
+        DB::table('users')->insert(array('id'=>'1','usuario'=>'admin', 
+        'password'=>'$2y$10$X5kq7WRJqTtJoktSXc.S/u/1/xUulJz/sSuW/Tvr6pHvdbh3D4mgC', 
+        'condicion' => '1','idrol' => '1'));
     }
 
     /**

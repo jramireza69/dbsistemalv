@@ -14,6 +14,7 @@
     <!-- Icons -->
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/simple-line-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js">
     <!-- Main styles for this application -->
     <link href="css/style.css" rel="stylesheet">
     
