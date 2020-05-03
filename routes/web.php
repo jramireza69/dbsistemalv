@@ -12,7 +12,11 @@ Route::group(['middleware' => ['guest']], function () {
 Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
-     Route::get('/dashboard', 'DashboardController');
+    Route::get('/dashboard', 'DashboardController');
+
+    Route::Post('/notification/get', 'NotificationController@get');
+
+
     Route::get('/main', function () {
         return view('contenido.contenido');
     })->name('main');
@@ -131,7 +135,7 @@ Route::group(['middleware' => ['auth']], function () {
         
     });
     
-     //  Route::get('/home', 'HomeController@index')->name('home'); 
+    
  });       
     
     

@@ -6,6 +6,8 @@
 
 require('./bootstrap');
 
+window.$ = window.jQuery = require('jquery');
+
 window.Vue = require('vue');
 
 /**
@@ -25,10 +27,27 @@ Vue.component('ingreso', require('./components/Ingreso.vue'));
 Vue.component('venta', require('./components/Venta.vue'));
 Vue.component('dashboard', require('./components/Dashboard.vue'));
 Vue.component('consultaingreso', require('./components/ConsultaIngreso.vue'));
+Vue.component('notification', require('./components/Notification.vue'));
 
 const app = new Vue({
     el: '#app',
     data: {
-        menu: 0
+        menu: 0,
+        notifications: []
+    },
+    created() {
+        let me = this;
+        axios.post('notification/get').then(function(response) {
+            me.notifications = response.data;
+
+        }).catch(function(error) {
+            console.log(error);
+        });
+        var userId = $('meta[name="userId"]').attr('content');
+
+        Echo.private('App.User.' + userId).notification((notification) => {
+            //  console.log(notification);
+            me.notifications.unshift(notification);
+        });
     }
 });
